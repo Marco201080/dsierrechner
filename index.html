@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MediCalc-Vet – Profile (v5.2)</title>
+  <link rel="manifest" href="manifest.webmanifest?v=2.2">
   <style>
     :root { --bg:#0f172a; --panel:#111827; --ink:#e5e7eb; --muted:#9ca3af; --accent:#22c55e; --danger:#ef4444; --sep:rgba(255,255,255,.10); }
     * { box-sizing: border-box; }
@@ -118,9 +119,6 @@ header { display:grid; grid-template-columns: 1fr auto 1fr; align-items:center; 
   background-color: #45a049 !important;
 }
 </style>
-
-
-<link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0b0f14">
 <link rel="apple-touch-icon" href="icons/icon-180.png">
 
@@ -237,7 +235,6 @@ table tfoot td:nth-last-child(2) {
   color: #ffffff !important;
 }
 </style>
-<link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="mc-icon.png">
 
 <style>
@@ -281,7 +278,7 @@ table tfoot td:nth-last-child(2) {
   <div class="wrap">
     <header>
       <div class="header-left">
-        <h1>MediCalc-Vet <span style="font-size:12px; font-weight:normal; color:#9ca3af; margin-left:8px;">v2.1</span></h1>
+        <h1>MediCalc-Vet <span style="font-size:12px; font-weight:normal; color:#9ca3af; margin-left:8px;">v2.2</span></h1>
         <div class="sub">Getrennte Profile (Hund, Katze, …), lokale Speicherung, Export/Import.</div>
       </div>
       
@@ -917,16 +914,19 @@ if ('serviceWorker' in navigator) {
 <div id="version-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="version-modal-title">
   <div id="version-modal">
     <header>
-      <h3 id="version-modal-title">Neuerungen – Version&nbsp;2.1</h3>
+      <h3 id="version-modal-title">Neuerungen – Version&nbsp;2.2</h3>
       <button class="btn-x" id="version-modal-x" aria-label="Popup schließen">✕</button>
     </header>
     <div class="modal-body">
       <p>Dieses Fenster erscheint nur beim ersten Start nach einem Update.</p>
-      <ul>
-        <li>Versionsnummer geändert auf 2.1</li>
-        <li>Logo-Feld vergrößert und mittig zwischen Programmnamen und Drucken positioniert</li>
-        <li>Header-Layout optimiert (saubere Ausrichtung mit Grid)</li>
-    </ul>
+      <ul><ul>
+  <li>Versionsnummer geändert auf 2.2</li>
+  <li>Service Worker aktualisiert (Cache-Version v2.2) für schnellere Updates & Offline-Modus</li>
+  <li>Manifest mit Cache-Busting eingebunden (manifest.webmanifest?v=2.2)</li>
+  <li>Logo-Feld vergrößert und sauber zentriert im Header</li>
+  <li>Header-Layout auf Grid umgestellt (bessere Ausrichtung)</li>
+  <li>Mobil: Querformat-Start für PWAs, wo unterstützt</li>
+</ul></ul>
     </div>
     <div class="modal-actions">
       <button class="btn-close" id="version-modal-close">OK</button>
@@ -936,7 +936,7 @@ if ('serviceWorker' in navigator) {
 
 <script>
 (function() {
-  const CURRENT_VERSION = '2.1';
+  const CURRENT_VERSION = '2.2';
   const KEY = 'mediCalcVet_seen_version_' + CURRENT_VERSION;
 
   function showModal() {
@@ -1033,6 +1033,17 @@ document.addEventListener('DOMContentLoaded', function() {
     reader.readAsDataURL(file);
   });
 });
+</script>
+
+
+<script>
+(function(){
+  try {
+    if (screen && screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(function(){});
+    }
+  } catch(e){}
+})();
 </script>
 
 </body>
