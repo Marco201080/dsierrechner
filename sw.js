@@ -2,7 +2,7 @@ const CACHE_VERSION = 'v2.2';
 const CACHE_NAME = `mediCalc-cache-${CACHE_VERSION}`;
 const CORE_ASSETS = [
   './',
-  './index.html',
+  './index.html?v=2.2',
   './manifest.webmanifest?v=2.2'
 ];
 
@@ -23,7 +23,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const req = event.request;
 
-  // Network-first for HTML to get fresh updates
+  // Network-first for HTML
   if (req.headers.get('accept') && req.headers.get('accept').includes('text/html')) {
     event.respondWith(
       fetch(req).then((res) => {
@@ -35,7 +35,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Cache-first for everything else
+  // Cache-first for other requests
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) return cached;

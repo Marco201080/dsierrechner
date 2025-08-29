@@ -921,11 +921,11 @@ if ('serviceWorker' in navigator) {
       <p>Dieses Fenster erscheint nur beim ersten Start nach einem Update.</p>
       <ul><ul>
   <li>Versionsnummer geändert auf 2.2</li>
-  <li>Service Worker aktualisiert (Cache-Version v2.2) für schnellere Updates & Offline-Modus</li>
+  <li>Service Worker hinzugefügt (Cache-Version v2.2) für Updates & Offline-Modus</li>
   <li>Manifest mit Cache-Busting eingebunden (manifest.webmanifest?v=2.2)</li>
   <li>Logo-Feld vergrößert und sauber zentriert im Header</li>
   <li>Header-Layout auf Grid umgestellt (bessere Ausrichtung)</li>
-  <li>Mobil: Querformat-Start für PWAs, wo unterstützt</li>
+  <li>Mobil: Querformat-Start für PWAs (Android unterstützt, iOS ignoriert)</li>
 </ul></ul>
     </div>
     <div class="modal-actions">
@@ -1033,17 +1033,6 @@ document.addEventListener('DOMContentLoaded', function() {
     reader.readAsDataURL(file);
   });
 });
-</script>
-
-
-<script>
-(function(){
-  try {
-    if (screen && screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock('landscape').catch(function(){});
-    }
-  } catch(e){}
-})();
 </script>
 
 </body>

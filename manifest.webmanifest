@@ -1,7 +1,8 @@
 {
   "name": "MediCalc-Vet",
   "short_name": "MediCalc",
-  "start_url": "/",
+  "start_url": "./index.html?v=2.2",
+  "scope": "./",
   "display": "standalone",
   "orientation": "landscape",
   "background_color": "#0f172a",
